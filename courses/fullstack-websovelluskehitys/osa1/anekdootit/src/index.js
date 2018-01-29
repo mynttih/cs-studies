@@ -7,17 +7,48 @@ const Button = ({ text, handleClick }) => (
     </button>
 )
 
+const Statistic = ({ anecdotes, votes }) => {
+  let topAnecdoteIndex = votes.indexOf(Math.max(...votes))
+  return (
+    <div>
+      <h2>anecdote with most votes</h2>
+      {anecdotes[topAnecdoteIndex]}
+      <br />
+      <p>has {votes[topAnecdoteIndex]} votes</p>
+    </div>
+  )
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: 0
+      selected: 0,
+      votes: [0, 0, 0, 0, 0, 0]
     }
   }
 
   onClickNext = () => {
     return () => {
-      this.setState({selected: this.getRandomInt(0, this.props.anecdotes.length)})
+      this.setState({
+        selected: this.getRandomInt(0, this.props.anecdotes.length)
+      })
+    }
+  }
+
+  onClickVote = () => {
+    const newVotes = []
+    for (let i = 0; i < this.props.anecdotes.length; i++) {
+      if (i === this.state.selected) {
+        newVotes.push(this.state.votes[i] + 1)
+      } else {
+        newVotes.push(this.state.votes[i])
+      }
+    }
+    return () => {
+      this.setState({
+        votes: newVotes
+      })
     }
   }
 
@@ -32,9 +63,18 @@ class App extends React.Component {
       <div>
         {this.props.anecdotes[this.state.selected]}
         <br />
+        <p>has {this.state.votes[this.state.selected]} votes</p>
+        <Button
+          text="vote"
+          handleClick={this.onClickVote()}
+        />
         <Button
           text="next anecdote"
           handleClick={this.onClickNext()}
+        />
+        <Statistic
+          anecdotes={this.props.anecdotes}
+          votes={this.state.votes}
         />
       </div>
     )
