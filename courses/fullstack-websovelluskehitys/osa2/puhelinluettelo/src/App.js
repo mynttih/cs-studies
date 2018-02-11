@@ -77,14 +77,14 @@ class App extends React.Component {
   deleteName = (event) => {
       event.preventDefault()
       const deletePerson = this.state.persons.find(person => {
-          return person.id === parseInt(event.target.id, 10)
+          return person._id === event.target.id
       })
-      if (window.confirm('poistetaanko' + deletePerson.name + '?')) {
+      if (window.confirm('poistetaanko ' + deletePerson.name + '?')) {
         personService
             .deletePerson(deletePerson)
             .then(response => {
                 const newPersons = this.state.persons.filter(person => {
-                    return person.id !== deletePerson.id
+                    return person._id !== deletePerson._id
                 })
                 this.setState({
                     persons: newPersons,

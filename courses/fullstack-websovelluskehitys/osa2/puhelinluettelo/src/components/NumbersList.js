@@ -13,7 +13,7 @@ const NumbersList = (props) => {
                     <tr key={person.id}>
                         <td >{person.name} </td>
                         <td>{person.number}</td>
-                        <td><button type="button" id={person.id} onClick={deleteName}>poista</button></td>
+                        <td><button type="button" id={person._id} onClick={deleteName}>poista</button></td>
                     </tr>
                 )}
             </tbody>

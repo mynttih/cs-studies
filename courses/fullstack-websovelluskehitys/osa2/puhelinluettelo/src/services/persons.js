@@ -10,7 +10,7 @@ const create = (newPerson) => {
 }
 
 const deletePerson = (person) => {
-    return axios.delete(baseUrl + '/' + person.id)
+    return axios.delete(baseUrl + '/' + person._id)
 }
 
 const update = (id, newPerson) => {
