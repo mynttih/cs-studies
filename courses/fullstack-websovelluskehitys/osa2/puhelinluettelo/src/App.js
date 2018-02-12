@@ -43,10 +43,10 @@ class App extends React.Component {
         updatePerson.number = this.state.newNumber
         
         personService
-            .update(updatePerson.id, updatePerson)
+            .update(updatePerson._id, updatePerson)
             .then(response => {
                 const newPersons = this.state.persons.map(person => {
-                    return person.id !== updatePerson.id ? person : updatePerson
+                    return person._id !== updatePerson._id ? person : updatePerson
                 })
                 this.setState({
                     persons: newPersons,
