@@ -1,8 +1,8 @@
 const initialState = null
 
 const notificationReducer = (store = initialState, action) => {
-  console.log('action type: ', action.type)
-  console.log('action content: ', action.content)
+  //console.log('action type: ', action.type)
+  //console.log('action content: ', action.content)
   switch (action.type) {
   case 'VOTE':
     return `you voted ${action.content}`
