@@ -1,4 +1,6 @@
+import { connect } from 'react-redux'
 import { anecdoteCreation } from '../reducers/anecdoteReducer'
+import PropTypes from 'prop-types'
 import React from 'react'
 import { reset } from '../reducers/notificationReducer'
 
@@ -6,11 +8,9 @@ class AnecdoteForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const content = e.target.anecdote.value
-    this.props.store.dispatch(
-      anecdoteCreation(content)
-    )
+    this.props.anecdoteCreation(content)
     setTimeout(() => {
-      this.props.store.dispatch(reset())
+      this.props.reset()
     }, 5000)
 
     e.target.anecdote.value = ''
@@ -28,4 +28,25 @@ class AnecdoteForm extends React.Component {
   }
 }
 
-export default AnecdoteForm
+const mapStateToProps = (state) => {
+  return {
+    anecdotes: state.anecdotes,
+    notification: state.notification
+  }
+}
+
+const mapDispatchToProps = {
+  anecdoteCreation,
+  reset
+}
+
+const ConnectedAnecdoteForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+) (AnecdoteForm)
+
+export default ConnectedAnecdoteForm
+
+AnecdoteForm.contextTypes = {
+  store: PropTypes.object
+}
