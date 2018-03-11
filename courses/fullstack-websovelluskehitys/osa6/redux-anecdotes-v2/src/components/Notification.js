@@ -36,3 +36,7 @@ export default ConnectedNotification
 Notification.contextTypes = {
   store: PropTypes.object
 }
+
+Notification.propTypes = {
+  notification: PropTypes.string
+}

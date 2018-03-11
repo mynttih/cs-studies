@@ -62,3 +62,10 @@ export default ConnectedAnecdoteList
 AnecdoteList.contextTypes = {
   store: PropTypes.object
 }
+
+AnecdoteList.propTypes = {
+  anecdotes: PropTypes.arrayOf(PropTypes.object),
+  filter: PropTypes.string,
+  vote: PropTypes.func,
+  reset: PropTypes.func
+}

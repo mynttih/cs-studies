@@ -51,3 +51,8 @@ export default ConnectedAnecdoteForm
 AnecdoteForm.contextTypes = {
   store: PropTypes.object
 }
+
+AnecdoteForm.propTypes = {
+  anecdoteCreation: PropTypes.func,
+  reset: PropTypes.func
+}

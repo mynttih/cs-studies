@@ -4,6 +4,7 @@ import AnecdoteList from './components/AnecdoteList'
 import anecdoteService from './services/anecdotes'
 import { connect } from 'react-redux'
 import Notification from './components/Notification'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 class App extends React.Component {
@@ -29,3 +30,7 @@ export default connect(
   null,
   { anecdoteInitialization }
 ) (App)
+
+App.propTypes = {
+  anecdoteInitialization: PropTypes.func
+}

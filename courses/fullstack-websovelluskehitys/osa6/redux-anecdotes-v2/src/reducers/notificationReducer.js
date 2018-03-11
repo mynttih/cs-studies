@@ -7,7 +7,7 @@ const notificationReducer = (store = initialState, action) => {
   case 'VOTE':
     return `you voted ${action.content}`
   case 'CREATE':
-    return `you created ${action.content}`
+    return `you created ${action.data.content}`
   case 'RESET':
     return null
   default:
