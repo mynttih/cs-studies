@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { anecdoteCreation } from '../reducers/anecdoteReducer'
-import anecdoteService from '../services/anecdotes'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { reset } from '../reducers/notificationReducer'
@@ -10,8 +9,7 @@ class AnecdoteForm extends React.Component {
     e.preventDefault()
     const content = e.target.anecdote.value
     e.target.anecdote.value = ''
-    const newAnecdote = await anecdoteService.createAnecdote(content)
-    this.props.anecdoteCreation(newAnecdote)
+    this.props.anecdoteCreation(content)
     setTimeout(() => {
       this.props.reset()
     }, 5000)

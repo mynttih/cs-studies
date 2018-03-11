@@ -1,4 +1,3 @@
-import anecdoteService from '../services/anecdotes'
 import { connect } from 'react-redux'
 import Filter from './Filter'
 import PropTypes from 'prop-types'
@@ -23,8 +22,7 @@ class AnecdoteList extends React.Component {
             <div>
               has {anecdote.votes}
               <button onClick={async () => {
-                const votedAnecdote = await anecdoteService.vote(anecdote)
-                this.props.vote(votedAnecdote.id, votedAnecdote.content)
+                this.props.vote(anecdote)
                 setTimeout(() => {
                   this.props.reset()
                 }, 5000)
